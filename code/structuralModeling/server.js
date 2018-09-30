@@ -197,7 +197,7 @@ app.post("/sendmail", multipartMiddleware, function(req, res) {
 
 app.post("/invoice", multipartMiddleware, function(req, res) {
   let txn_names = req.body.txn_names.split(",");
-  let txn_prices = req.body.txn_prices.split(",");
+  // let txn_prices = req.body.txn_prices.split(",");
   // validate data
   if (isEmpty(req.body.name)) {
     return res.json({
@@ -213,7 +213,7 @@ app.post("/invoice", multipartMiddleware, function(req, res) {
   let sql = `INSERT INTO invoices(name,user_id,paid) VALUES('${
     req.body.name
   }','${req.body.user_id}','0')`;
-  
+
   db.serialize(function() {
     db.run(sql, function(err) {
       if (err) {
@@ -227,17 +227,16 @@ app.post("/invoice", multipartMiddleware, function(req, res) {
       for (let i = 0; i < txn_names.length; i++) {
         let query = `INSERT INTO transactions(name,price,invoice_id) VALUES(
             '${txn_names[i]}',
-            '${txn_prices[i]}',
             '${invoice_id}'
-        )`;
+        )`; // removed  '${txn_prices[i]}', above
         db.run(query, function(err) {
           if (err) {
-            error = TRUE;
+            // error = TRUE;
             return res.json({
               status: false,
               message: "Sorry, there was an error creating your invoice :("
             });
-          } 
+          }
         });
       }
       return res.json({
@@ -250,7 +249,7 @@ app.post("/invoice", multipartMiddleware, function(req, res) {
 
 app.get("/invoice/user/:user_id", multipartMiddleware, function(req, res) {
   let db = new sqlite3.Database("./database/InvoicingApp.db");
-  let sql = `SELECT * FROM invoices 
+  let sql = `SELECT * FROM invoices
   WHERE user_id='${req.params.user_id}'`;
 
   // LEFT JOIN transactions ON invoices.id=transactions.invoice_id

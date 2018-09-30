@@ -59,8 +59,10 @@
                           <thead>
                             <tr>
                               <th scope="col">#</th>
-                              <th scope="col">Transaction Name</th>
+                              <th scope="col">Idea Name</th>
+                              <!--
                               <th scope="col">Price ($)</th>
+                              -->
                               <th scope="col"></th>
                             </tr>
                           </thead>
@@ -69,7 +71,9 @@
                               <tr :key="txn.id">
                                 <th>{{ txn.id }}</th>
                                 <td>{{ txn.name }}</td>
+                                <!--
                                 <td>{{ txn.price }} </td>
+                                -->
                                 <td><button type="button" class="btn btn-danger" v-on:click="deleteTransaction(txn.id)">X</button></td>
                               </tr>
                             </template>
@@ -78,7 +82,7 @@
                       </div>
 
                       <div class="form-group">
-                          <button class="btn btn-primary" >Create Invoice</button>
+                          <button class="btn btn-primary" >Create Idea List</button>
                           {{ loading }}
                           {{ status }}
                       </div>
@@ -134,7 +138,7 @@ export default {
       });
       this.nextTxnId--;
       this.transactions = newList;
-      this.calcTotal();
+      // this.calcTotal();
     },
     // calcTotal(){
       // let total = 0;
@@ -147,7 +151,7 @@ export default {
       const formData = new FormData();
       // format for request
       let txn_names = [];
-      // let txn_prices = [];
+      //let txn_prices = [];
       this.transactions.forEach(element => {
         txn_names.push(element.name);
         // txn_prices.push(element.price);
