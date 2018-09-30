@@ -40,3 +40,6 @@ Thumbs.db
 # Editor backup files
 *.~lock.*
 .~lock.*
+
+# node modules directory
+node_modules/
