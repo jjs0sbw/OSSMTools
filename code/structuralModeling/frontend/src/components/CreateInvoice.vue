@@ -4,21 +4,21 @@
       <div class="tab-pane fade show active">
           <div class="row">
               <div class="col-md-12">
-                  <h3>Enter Details below to Create Invoice</h3>
+                  <h3>Enter Session Ideas Below</h3>
                   <form @submit.prevent="onSubmit">
                       <div class="form-group">
-                          <label for="">Invoice Name:</label>
+                          <label for="">Session Name:</label>
                           <input type="text" required class="form-control" placeholder="eg Seller's Invoice" v-model="invoice.name">
                       </div>
-
+                      <!--
                       <div class="form-group">
                         <label for="">Invoice Price:</label><span> $ {{ invoice.total_price }}</span>
                       </div>
-                      
+                      -->
                       <hr />
-                      <h3> Transactions </h3>
+                      <h3> Idea List </h3>
                       <div class="form-group">
-                        <label for="">Add Transaction:</label>
+                        <label for="">Add Idea:</label>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#transactionModal">
                           +
                         </button>
@@ -75,13 +75,13 @@
                           </tbody>
                         </table>
                       </div>
-                      
+
                       <div class="form-group">
                           <button class="btn btn-primary" >Create Invoice</button>
                           {{ loading }}
                           {{ status }}
                       </div>
-                  </form> 
+                  </form>
               </div>
           </div>
       </div>
@@ -112,7 +112,7 @@ export default {
       // append data to the arrays
       let name = document.getElementById("txn_name_modal").value;
       let price = document.getElementById("txn_price_modal").value;
-      
+
       if( name.length != 0 && price > 0){
         this.transactions.push({
           id: this.nextTxnId,
