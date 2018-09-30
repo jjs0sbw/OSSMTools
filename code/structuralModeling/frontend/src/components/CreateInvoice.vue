@@ -8,7 +8,7 @@
                   <form @submit.prevent="onSubmit">
                       <div class="form-group">
                           <label for="">Session Name:</label>
-                          <input type="text" required class="form-control" placeholder="eg Seller's Invoice" v-model="invoice.name">
+                          <input type="text" required class="form-control" placeholder="eg Great Ideas Session" v-model="invoice.name">
                       </div>
                       <!--
                       <div class="form-group">
@@ -27,25 +27,26 @@
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Add Transaction</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Add Idea</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                               </div>
                               <div class="modal-body">
                                 <div class="form-group">
-                                  <label for="">Transaction name</label>
+                                  <label for="">Idea Description</label>
                                   <input type="text" id="txn_name_modal" class="form-control">
                                 </div>
-
+                                <!--
                                 <div class="form-group">
                                   <label for="">Price ($)</label>
                                   <input type="numeric" id="txn_price_modal" class="form-control">
                                 </div>
+                                -->
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Discard Transaction</button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="saveTransaction()">Save transaction</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Discard Idea</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="saveTransaction()">Save Idea</button>
                               </div>
                             </div>
                           </div>
@@ -111,13 +112,14 @@ export default {
     saveTransaction() {
       // append data to the arrays
       let name = document.getElementById("txn_name_modal").value;
-      let price = document.getElementById("txn_price_modal").value;
+      //let price = document.getElementById("txn_price_modal").value;
 
-      if( name.length != 0 && price > 0){
+      //if( name.length != 0 && price > 0){
+      if( name.length != 0 ){
         this.transactions.push({
           id: this.nextTxnId,
           name: name,
-          price: price
+        //  price: price
         });
         this.nextTxnId++;
         this.calcTotal();
@@ -134,31 +136,31 @@ export default {
       this.transactions = newList;
       this.calcTotal();
     },
-    calcTotal(){
-      let total = 0;
-      this.transactions.forEach(element => {
-        total += parseInt(element.price);
-      });
-      this.invoice.total_price = total;
-    },
+    // calcTotal(){
+      // let total = 0;
+      // this.transactions.forEach(element => {
+        // total += parseInt(element.price);
+      // });
+      // this.invoice.total_price = total;
+    // },
     onSubmit() {
       const formData = new FormData();
       // format for request
       let txn_names = [];
-      let txn_prices = [];
+      // let txn_prices = [];
       this.transactions.forEach(element => {
         txn_names.push(element.name);
-        txn_prices.push(element.price);
+        // txn_prices.push(element.price);
       });
       console.log(txn_names);
-      console.log(txn_prices);
+      // console.log(txn_prices);
       formData.append("name", this.invoice.name);
       formData.append("txn_names", txn_names);
-      formData.append("txn_prices", txn_prices);
+      // formData.append("txn_prices", txn_prices);
       let user = JSON.parse(localStorage.getItem('user'));
       formData.append("user_id", user.id);
 
-      this.loading = "Creating Invoice, please wait ...";
+      this.loading = "Creating Idea, please wait ...";
       // Post to server
       axios.post("http://localhost:3128/invoice", formData, {
         headers: {"x-access-token": localStorage.getItem("token")}

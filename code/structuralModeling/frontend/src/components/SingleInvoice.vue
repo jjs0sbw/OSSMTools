@@ -12,8 +12,10 @@
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Transaction Name</th>
+                  <th scope="col">Idea Name</th>
+                  <!--
                   <th scope="col">Price ($)</th>
+                  -->
                 </tr>
               </thead>
               <tbody>
@@ -21,14 +23,18 @@
                   <tr :key="txn.id">
                     <th>{{ txn.id }}</th>
                     <td>{{ txn.name }}</td>
+                    <!--
                     <td>{{ txn.price }} </td>
+                    -->
                   </tr>
                 </template>
               </tbody>
               <tfoot>
+                <!--
                 <td></td>
                 <td style="text-align: right">Total :</td>
                 <td><strong>$ {{ total_price }}</strong></td>
+                -->
               </tfoot>
             </table>
           </div>
@@ -95,11 +101,11 @@ export default {
         console.log(res);
         this.loading = '';
         this.status = 'Invoice Sent'
-      });   
+      });
     }
   },
   mounted() {
-    
+
     // make request to fetch invoice data
     this.user = JSON.parse(localStorage.getItem("user"));
     let token = localStorage.getItem("token");

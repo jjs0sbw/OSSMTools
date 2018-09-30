@@ -6,12 +6,12 @@
       <div class="tab-pane fade show active">
           <div class="row">
               <div class="col-md-12">
-                  <h3>Here's a list of your Invoices</h3>
+                  <h3>Here's a list of your Ideas</h3>
                   <table class="table">
                   <thead>
                     <tr>
-                      <th scope="col">Invoice #</th>
-                      <th scope="col">Invoice Name</th>
+                      <th scope="col">Idea #</th>
+                      <th scope="col">Idea Name</th>
                       <th scope="col">Status</th>
                       <th scope="col"></th>
                     </tr>
@@ -21,8 +21,8 @@
                       <tr>
                         <th scope="row">{{ invoice.id }}</th>
                         <td>{{ invoice.name }}</td>
-                        <td v-if="invoice.paid == 0 "> Unpaid </td>
-                        <td v-else> Paid </td>
+                        <td v-if="invoice.paid == 0 "> Unreviewed </td>
+                        <td v-else> Reviewed </td>
                         <td ><router-link :to="{ name: 'SingleInvoice', params: { invoice_id: invoice.id }}" class="btn btn-success">TO INVOICE</router-link>  </td>
                       </tr>
                     </template>
@@ -40,7 +40,7 @@
 import axios from "axios";
 
 export default {
-  name: "ViewInvoices",
+  name: "ViewIdeas",
   components: {},
   data() {
     return {
