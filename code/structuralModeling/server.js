@@ -231,7 +231,7 @@ app.post("/invoice", multipartMiddleware, function(req, res) {
         )`; // removed  '${txn_prices[i]}', above
         db.run(query, function(err) {
           if (err) {
-            // error = TRUE;
+             error = TRUE;
             return res.json({
               status: false,
               message: "Sorry, there was an error creating your invoice :("

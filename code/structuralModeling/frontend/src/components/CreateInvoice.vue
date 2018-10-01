@@ -126,7 +126,7 @@ export default {
         //  price: price
         });
         this.nextTxnId++;
-        this.calcTotal();
+        // this.calcTotal();
         // clear their values
         document.getElementById("txn_name_modal").value = "";
         document.getElementById("txn_price_modal").value = "";
