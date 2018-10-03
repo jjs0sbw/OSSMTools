@@ -11,7 +11,7 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
+                  <th scope="col"> Idea #</th>
                   <th scope="col">Idea Name</th>
                   <!--
                   <th scope="col">Price ($)</th>
@@ -34,7 +34,8 @@
                 <td></td>
                 <td style="text-align: right">Total :</td>
                 <td><strong>$ {{ total_price }}</strong></td>
-                -->
+                -->f
+
               </tfoot>
             </table>
           </div>
@@ -45,7 +46,7 @@
             <h3>Enter Recipient's Name and Email to Send Invoice</h3>
             <div class="form-group">
               <label for="">Recipient Name</label>
-              <input type="text" required class="form-control" placeholder="eg Chris" v-model="recipient.name">
+              <input type="text" required class="form-control" placeholder="eg Participant" v-model="recipient.name">
             </div>
 
             <div class="form-group">
