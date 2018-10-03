@@ -40,7 +40,7 @@
             </table>
           </div>
         </div>
-
+        <!--
         <div class="row">
           <form @submit.prevent="send" class="col-md-12">
             <h3>Enter Recipient's Name and Email to Send Invoice</h3>
@@ -61,6 +61,7 @@
             </div>
           </form>
         </div>
+        -->
       </div>
     </div>
   </div>
