@@ -30,7 +30,7 @@
                 </template>
               </tbody>
               <tfoot>
-                <!--
+                <!-- Start to remove the price variable
                 <td></td>
                 <td style="text-align: right">Total :</td>
                 <td><strong>$ {{ total_price }}</strong></td>
